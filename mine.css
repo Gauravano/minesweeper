@@ -30,7 +30,9 @@ main div.center .mid table{
 	height: 100%;
 	width: 100%;
 	background-color: #c2d6d6;
-	border-color: black;	
+	border-color: black;
+	text-align: center;	
+	
 }
 
 main div.center .bottom{

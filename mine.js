@@ -24,16 +24,16 @@ var placingMines = function(){
 	var i=0;
 	while(i < numMines){
 		var a = Math.random()*64;
-		a = Math.round(a);
+		a = Math.floor(a);
 
 		var p = arr.indexOf(a);
-		
-		if(p == -1){
-			arr.push(a);
-			i++;
 
 		var x = Math.round(a%numRows);
 		var y = Math.round(a/numRows);  
+		
+		if(p == -1 && x<8 && y<8){
+			arr.push(a);
+			i++;
 
 		matrix[x][y] = -1;
 	}
@@ -225,6 +225,36 @@ var showAll = function(){
 
 };
 
+var afterClick = function(){
+
+	console.log("afterClick started ");
+	console.log(this);
+	// console.log(this.rowIndex,"",this.cellIndex);
+
+	// if(matrix[this.colSpan][this.cellIndex] == -1){
+	// 	showAll();
+	// 	console.log("mine is there ");
+	// }else{
+	// 	console.log("no mine");
+	// }
+};
+
+function listener(){
+
+	console.log("Enter listener ");
+	
+	for(var i=0;i<numRows;i++){
+		var colArray = display[i].getElementsByTagName("td");
+		
+		for(var j=0;j<numRows;j++){
+			colArray[j].addEventListener("click",function(){
+				console.log(this);
+				console.log(i,this.cellIndex);
+			});
+		}
+	}
+	
+}
 
 var pageStart = function(){
 
@@ -232,11 +262,8 @@ var pageStart = function(){
 	console.log("matrix status : " ,matrix);
 	placingMines();
 	generateNeighbourNum();
-	showAll();
+	listener();
 };
-
-
-
 
 
 
