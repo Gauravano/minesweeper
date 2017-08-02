@@ -3,6 +3,8 @@ var numRows;
 var numCols ;
 var numMines;
 
+var display = document.getElementsByTagName("tr");
+
 var initialization = function(){
 	numRows = 8;
 	numCols = 8;
@@ -211,6 +213,18 @@ var generateNeighbourNum = function(){
 	console.log("After neighbours",matrix);
 };
 
+var showAll = function(){
+
+	for(var i=0;i<numRows;i++){
+		var colArray = display[i].getElementsByTagName("td");
+		
+		for(var j=0;j<numRows;j++){
+			colArray[j].innerHTML = matrix[i][j];
+		}
+	}
+
+};
+
 
 var pageStart = function(){
 
@@ -218,6 +232,7 @@ var pageStart = function(){
 	console.log("matrix status : " ,matrix);
 	placingMines();
 	generateNeighbourNum();
+	showAll();
 };
 
 
